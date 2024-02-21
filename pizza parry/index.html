@@ -6,16 +6,34 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Pizza parrys</title>
     <link rel="stylesheet" href="style.css" />
-    <script src="script.js" defer></script>
-    
   </head>
   <body>
+    <header>
+      <h1>Pizza Parrys</h1>
+      <h4> Welcome to Parrys pizza select "new pizza" to start order </h4>
+      <button type="button" id="newPizza" >New Pizza</button>
+    </header>
 
-  <header> 
-    <h1> Pizza Parrys</h1>
-  </header>
-
-  <div id="toppings"></div>
-
-
+    <aside>
+      
+      <p id="text" style="display: none">Ingredients have been added</p>
+    </aside>
+    <div class="card rounded bg-light p-3" >
+      <div>
+        <form id="pizzaOrder" >
+          <h3> Your Pizza </h3>
+          <div id="toppingsContainer"></div>
+          <ul id="pizzaIng" type="text"></ul>
+          <button type='button' id='savePizza' value="savePizza">Add to Order</button>
+        </form>
+      </div>
+    </div>
+    <div>
+      <h1 >Your Orders:</h1>
+      <div>
+        <ul id="yourOrders"></ul>
+      </div>
+    </div>
+    <script src="script.js" defer></script>
   </body>
+</html>
