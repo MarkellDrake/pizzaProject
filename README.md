@@ -4,6 +4,7 @@ Additional Requirements
 Data Persistence: Implement a solution that stores data in a persistent manner, ensuring that data remains available across page refreshes and revisits. The data storage solution should not rely solely on local storage mechanisms (like browser local storage), but should instead use a server-side or cloud-based database to maintain state.
 
 Automated Test Suite: Submissions that include an automated test suite covering key functionalities will be given preference. Please document how to execute these tests in your project's README.
+
 Code Quality: Submissions will be evaluated primarily on the quality of the code produced. This includes aspects such as readability, maintainability, and best practices.
 
 User Interface: While we are not evaluating your design skills, we are looking for a functional and easy-to-use interface. Please ensure that the user interface is easy to use and intuitive. Bonus points for responsive design.
