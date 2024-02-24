@@ -1,9 +1,11 @@
+const mongoose = require('mongoose');
 var pizzaIng = document.getElementById("pizzaIng");
 var pizzaFrame = document.getElementById("pizzaOrder");
 // var toppingsContainerId = document.getElementById("toppingsContainer");
 var yourOrdersId = document.getElementById("yourOrdersHead");
 var savePizzabuttonEl = document.querySelector("#savePizza");
 var newPizzabuttonEl = document.querySelector("#newPizza");
+
 var orders;
 var toppingsDisplayed = false;
 
@@ -202,15 +204,15 @@ function addToppingCheckbox(){
 
 });
 
-function disableToppingsCheckboxes(){
-    var checkboxes =document.querySelectorAll('#toppingsContainer input[type="checkbox]');
-    checkboxes.forEach(function(checkbox,){
-        if(i !== index){
-            checkbox.disabled = true;
-        }
+// function disableToppingsCheckboxes(){
+//     var checkboxes =document.querySelectorAll('#toppingsContainer input[type="checkbox]');
+//     checkboxes.forEach(function(checkbox,){
+//         if(i !== index){
+//             checkbox.disabled = true;
+//         }
         
-    });
-}
+//     });
+// }
 function enableToppingsCheckboxes(){
     var checkboxes = document.querySelectorAll('#toppingsContainer input[type="checkbox"]');
     checkboxes.forEach(function(checkbox){
@@ -223,7 +225,6 @@ savePizzabuttonEl.addEventListener("click", function () {
     pizzaIng.innerHTML ='';
   //display your orders line
   yourOrdersId.style.display = "block";
-
   enableToppingsCheckboxes();
 
   var orders = [];
@@ -238,21 +239,62 @@ savePizzabuttonEl.addEventListener("click", function () {
       checkbox.nextSibling.style.display = "inline";
     }
   });
-  // does not allow duplicate pizzas to be made 
-  var exsistingOrders = JSON.parse(localStorage.getItem('pizzaOrders')) || [];
-  var orderExists = exsistingOrders.some(function(exsistingOrders){
-    return JSON.stringify(exsistingOrders) === JSON.stringify(orders);
-  });
-  if(orderExists){
-    alert("This pizza order already exists.");
-  }else{
-    exsistingOrders.push(orders);
-    localStorage.setItem("pizzaOrders", JSON.stringify(exsistingOrders));
+  fetch(`/api/check-duplicate`, {
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ toppings: orders }),
+})
+.then(response => {
+    if (response.status === 409) {
+        throw new Error('Duplicate pizza order found');
+    }
+    return response.json();
+})
+.then(()=>{
+  return fetch(`/api/pizza-order`, {
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ toppings: orders }),
+});
+})
+.then(response => {
+  if (!response.ok) {
+      throw new Error('Network response was not ok');
   }
+  return response.json();
+})
+.then(data => {
+    console.log('Pizza order saved successfully:', data);
+    displaySavedOrders();
+})
+.catch(error => {
+    if (error.message === 'Duplicate pizza order found') {
+        alert('This pizza order already exists.');
+    } else {
+        console.error('Error saving pizza order:', error);
+        alert('Error saving pizza order. Please try again.');
+    }
+});
+});
+//   // does not allow duplicate pizzas to be made 
+//   var exsistingOrders = JSON.parse(localStorage.getItem('pizzaOrders')) || [];
+//   var orderExists = exsistingOrders.some(function(exsistingOrders){
+//     return JSON.stringify(exsistingOrders) === JSON.stringify(orders);
+//   });
+//   if(orderExists){
+//     alert("This pizza order already exists.");
+//   }else{
+//     exsistingOrders.push(orders);
+//     localStorage.setItem("pizzaOrders", JSON.stringify(exsistingOrders));
+//   }
   
 
-  displaySavedOrders();
-});
+//   displaySavedOrders();
+// });
  //to add toppings to order 
 function addTopping(orderIndex) {
     var newTopping = prompt("Enter the topping to add:");
