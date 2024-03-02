@@ -1,38 +1,36 @@
 # pizzaProject
-Additional Requirements
 
-Data Persistence: Implement a solution that stores data in a persistent manner, ensuring that data remains available across page refreshes and revisits. The data storage solution should not rely solely on local storage mechanisms (like browser local storage), but should instead use a server-side or cloud-based database to maintain state.
+# How to build and run 
 
-Automated Test Suite: Submissions that include an automated test suite covering key functionalities will be given preference. Please document how to execute these tests in your project's README.
+In order to Build and run web application you first would need to clone the ssh key and clone the project on 
 
-Code Quality: Submissions will be evaluated primarily on the quality of the code produced. This includes aspects such as readability, maintainability, and best practices.
+to your local device. After doing so open the project using the intergrated terminal and enter 'npm start'.
 
-User Interface: While we are not evaluating your design skills, we are looking for a functional and easy-to-use interface. Please ensure that the user interface is easy to use and intuitive. Bonus points for responsive design.
 
-Deployment: Deploy your application to a cloud provider of your choice (e.g. AWS, GCP, Azure, Heroku, Netlify, Vercel, etc.). The deployed application should be publicly accessible.
+# Project Overview
 
-Documentation: Include a README file that contains detailed instructions on how to build, test, and run your application locally. Also include a section in the README file that provides a brief overview of the application and your thought process behind your technical choices.
+Welcome to Pizza Parrys where imagination meets a good pizza. No topping is off limits just add a topping and 
 
-Readme
+its garunteed it will be on your pizza.
 
-It should describe steps required for building and running locally
-It should describe how to run tests locally
-Manage Toppings
+In the Pizza Parrys application I went with the usage of checkboxes for each topping just to make sure  the user 
 
-As a pizza store owner I should be able to manage toppings available for my pizza chefs.
+is aware of their combinations before they confirm the pizza. Once that pizza is confirmed then it is added to a 
 
-It should allow me to see a list of available toppings - yes
-It should allow me to add a new topping -yes
-It should allow me to delete an existing topping - yes
-It should allow me to update an existing topping -yes
-It should not allow me to enter duplicate toppings -yes
-Manage Pizzas
+list of pizzas  that has a few of our specialties on it. No worries if those arent the pizzas that are wanted  we 
 
-As a pizza chef I should be able to create new pizza master pieces
+have lovely delete buttons that not only remove  the  preset pizzas, but also if those toppings are looking too 
 
-It should allow me to see a list of existing pizzas and their toppings - yes
-It should allow me to create a new pizza and add toppings to it - yes
-It should allow me to delete an existing pizza -yes 
-It should allow me to update an existing pizza- yes 
-It should allow me to update toppings on an existing pizza -yes 
-It should not allow me to enter duplicate pizzas
+regular or  you cant stand the sight of them then you can delete those as well. Last but not least  we know that 
+
+every once in a while a person might not be too sure what type of pizza they want and might want to change their  
+
+mind, so thats why that edit button is there to add toppings or remove toppings with just a click of 
+
+the checkbox and save button and just like that  the pizza is saved like nothing happened. One last thing to 
+
+increase imaginative pizza making there is no doubling of the same pizza toppings or even the same type of pizza 
+
+order. Again welcome to Pizza Parrys and remember its not as fun eating the pizzas if they arent just how you 
+
+like it.
